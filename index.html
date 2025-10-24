@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi Proxy Config Fetcher</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="crt-effect"></div>
+    
+    <div class="container">
+        <div class="terminal-header">
+            <div class="header-title">
+                <i class="fas fa-terminal"></i>
+                MULTI PROXY CONFIG FETCHER
+            </div>
+            <div class="header-status">
+                <span class="status-indicator"></span>
+                <span class="status-text">ONLINE</span>
+            </div>
+        </div>
+
+        <div class="terminal-body">
+            <div class="boot-sequence" id="bootSequence">
+                <div class="boot-line">[<span class="boot-ok">OK</span>] Starting Multi Proxy Config Fetcher...</div>
+                <div class="boot-line">[<span class="boot-ok">OK</span>] Loading protocol handlers: VMess, VLess, Trojan, SS, Hysteria2</div>
+                <div class="boot-line">[<span class="boot-ok">OK</span>] Initializing Xray-core testing engine...</div>
+                <div class="boot-line">[<span class="boot-ok">OK</span>] Initializing Sing-box testing engine...</div>
+                <div class="boot-line">[<span class="boot-ok">OK</span>] Geo-location services: ACTIVE</div>
+                <div class="boot-line">[<span class="boot-ok">OK</span>] Configuration endpoints: READY</div>
+                <div class="boot-line boot-ready">
+                    <span class="glitch" data-text="► SYSTEM READY">► SYSTEM READY</span>
+                </div>
+            </div>
+
+            <div class="main-content" id="mainContent">
+                <div class="logo-section">
+                    <span class="cursor-blink">▮</span>
+                    <span class="logo-text">Anonymous</span>
+                </div>
+
+                <div class="info-section">
+                    <p>Automated proxy configuration fetcher supporting multiple protocols.</p>
+                    <p>Configurations are fetched from public sources, validated, tested, and served through real-time health-checked endpoints.</p>
+                </div>
+
+                <div class="endpoints-section">
+                    <div class="section-title">
+                        <i class="fas fa-network-wired"></i>
+                        AVAILABLE ENDPOINTS
+                    </div>
+                    
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <i class="fas fa-file-code"></i>
+                            <span class="endpoint-name">RAW CONFIGURATIONS</span>
+                            <span class="endpoint-badge badge-raw">V2RAY/XRAY</span>
+                        </div>
+                        <div class="endpoint-description">
+                            All extracted proxy configurations in original v2ray/Xray format.
+                            <span class="highlight">Protocols:</span> VMess, VLess, Trojan, SS, Hysteria2
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <i class="fas fa-vial"></i>
+                            <span class="endpoint-name">XRAY TESTED</span>
+                            <span class="endpoint-badge badge-tested">VERIFIED</span>
+                        </div>
+                        <div class="endpoint-description">
+                            Configurations verified and tested using Xray-core engine.
+                            <span class="highlight">Status:</span> Real-time health checked
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <i class="fas fa-box"></i>
+                            <span class="endpoint-name">SING-BOX ALL</span>
+                            <span class="endpoint-badge badge-singbox">JSON</span>
+                        </div>
+                        <div class="endpoint-description">
+                            All configurations converted to Sing-box JSON format with geo-tagging.
+                            <span class="highlight">Features:</span> Auto-tagged with flags and country names
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_all.json">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <i class="fas fa-shield-check"></i>
+                            <span class="endpoint-name">SING-BOX VERIFIED</span>
+                            <span class="endpoint-badge badge-verified">PREMIUM</span>
+                        </div>
+                        <div class="endpoint-description">
+                            Premium configurations tested and verified using Sing-box core.
+                            <span class="highlight">Quality:</span> Maximum reliability guaranteed
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_tested.json">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-section">
+                    <div class="section-title">
+                        <i class="fas fa-chart-line"></i>
+                        SYSTEM STATUS
+                    </div>
+                    <div class="status-grid">
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-server"></i></div>
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">PROTOCOLS</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-sync-alt"></i></div>
+                            <div class="stat-value">3H</div>
+                            <div class="stat-label">UPDATE CYCLE</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="stat-value">AUTO</div>
+                            <div class="stat-label">HEALTH CHECK</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-globe"></i></div>
+                            <div class="stat-value">GEO</div>
+                            <div class="stat-label">TAGGING</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <p class="designer-credit">
+                        Designed by: <a href="https://github.com/4n0nymou3/multi-proxy-config-fetcher" target="_blank" class="anonymous-link">Anonymous</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <div class="footer-left">
+                <i class="fas fa-lock"></i> ENCRYPTED CONNECTION
+            </div>
+            <div class="footer-center">
+                <span id="currentTime"></span>
+            </div>
+            <div class="footer-right">
+                <span id="typing"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span>URL copied to clipboard!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
