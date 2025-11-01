@@ -18,6 +18,7 @@
     --accent-blue: #00d9ff;
     --accent-red: #ff0055;
     --accent-purple: #bd00ff;
+    --accent-orange: #ff8800;
     --glow-color: rgba(0, 255, 65, 0.5);
 }
 
@@ -342,6 +343,12 @@ body::before {
     background: rgba(0, 217, 255, 0.2);
     color: var(--accent-blue);
     border: 1px solid var(--accent-blue);
+}
+
+.badge-loadbalance {
+    background: rgba(255, 136, 0, 0.2);
+    color: var(--accent-orange);
+    border: 1px solid var(--accent-orange);
 }
 
 .badge-singbox {
