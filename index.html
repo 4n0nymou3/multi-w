@@ -37,7 +37,7 @@
             </div>
 
             <div class="main-content" id="mainContent">
-                <div class="logo-section">
+                <div class="logo-section">
                     <span class="logo-text">Anonymous</span>
                     <span class="cursor-blink">▮</span>
                 </div>
@@ -84,6 +84,25 @@
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <i class="fas fa-balance-scale"></i>
+                            <span class="endpoint-name">XRAY LOAD BALANCED</span>
+                            <span class="endpoint-badge badge-loadbalance">SMART</span>
+                        </div>
+                        <div class="endpoint-description">
+                            Unified Xray configuration with intelligent load balancing and automatic failover.
+                            <span class="highlight">Features:</span> Ping-based routing, best server selection, auto-fallback
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_loadbalanced_config.json">
                             <button class="copy-btn" onclick="copyToClipboard(this)">
                                 <i class="fas fa-copy"></i>
                                 <span>COPY</span>
