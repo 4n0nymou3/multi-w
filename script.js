@@ -23,10 +23,13 @@ function startTypingAnimation() {
     const texts = [
         'READY',
         'MONITORING',
-        'ACTIVE',
         'FETCHING',
-        'TESTING',
-        'VALIDATING'
+        'VALIDATING',
+        'GEO-TAGGING',
+        'TESTING (PASS 1)',
+        'CONVERTING',
+        'TESTING (PASS 2)',
+        'FILTERING SECURE'
     ];
     let currentIndex = 0;
     const typingElement = document.getElementById('typing');
@@ -40,7 +43,6 @@ function startTypingAnimation() {
 function copyToClipboard(button) {
     const urlInput = button.previousElementSibling;
     const url = urlInput.value;
-
     navigator.clipboard.writeText(url).then(function() {
         const originalHTML = button.innerHTML;
         button.innerHTML = '<i class="fas fa-check"></i><span>COPIED!</span>';
@@ -67,7 +69,6 @@ function copyToClipboard(button) {
 function showToast() {
     const toast = document.getElementById('toast');
     toast.classList.add('show');
-    
     setTimeout(function() {
         toast.classList.remove('show');
     }, 3000);
