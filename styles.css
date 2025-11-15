@@ -324,45 +324,6 @@ body::before {
     letter-spacing: 1px;
 }
 
-.endpoint-badge {
-    padding: 4px 12px;
-    border-radius: 3px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-left: auto;
-}
-
-.badge-raw {
-    background: rgba(0, 255, 65, 0.2);
-    color: var(--primary-green);
-    border: 1px solid var(--primary-green);
-}
-
-.badge-tested {
-    background: rgba(0, 217, 255, 0.2);
-    color: var(--accent-blue);
-    border: 1px solid var(--accent-blue);
-}
-
-.badge-loadbalance {
-    background: rgba(255, 136, 0, 0.2);
-    color: var(--accent-orange);
-    border: 1px solid var(--accent-orange);
-}
-
-.badge-singbox {
-    background: rgba(189, 0, 255, 0.2);
-    color: var(--accent-purple);
-    border: 1px solid var(--accent-purple);
-}
-
-.badge-verified {
-    background: rgba(255, 215, 0, 0.2);
-    color: #ffd700;
-    border: 1px solid #ffd700;
-}
-
 .endpoint-description {
     color: var(--text-muted);
     margin: 10px 0;
@@ -645,11 +606,6 @@ body::before {
 
     .endpoint-name {
         font-size: 14px;
-    }
-
-    .endpoint-badge {
-        font-size: 9px;
-        padding: 3px 8px;
     }
 
     .url-input {
