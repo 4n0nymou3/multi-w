@@ -27,12 +27,12 @@
             <div class="boot-sequence" id="bootSequence">
                 <div class="boot-line">[<span class="boot-ok">OK</span>] Starting Multi Proxy Config Fetcher...</div>
                 <div class="boot-line">[<span class="boot-ok">OK</span>] Loading protocol handlers: VMess, VLess, Trojan, SS, Hysteria2</div>
-                <div class="boot-line">[<span class="boot-ok">OK</span>] Initializing Xray-core testing engine...</div>
-                <div class="boot-line">[<span class="boot-ok">OK</span>] Initializing Sing-box testing engine...</div>
+                <div class="boot-line">[<span class="boot-ok">OK</span>] Initializing Xray-core testing engine (Pass 1)...</div>
+                <div class="boot-line">[<span class="boot-ok">OK</span>] Initializing Sing-box testing engine (Pass 2)...</div>
                 <div class="boot-line">[<span class="boot-ok">OK</span>] Geo-location services: ACTIVE</div>
-                <div class="boot-line">[<span class="boot-ok">OK</span>] Configuration endpoints: READY</div>
+                <div class="boot-line">[<span class="boot-ok">OK</span>] Security filter engaged: Analyzing protocols...</div>
                 <div class="boot-line boot-ready">
-                    <span class="glitch" data-text="► SYSTEM READY">► SYSTEM READY</span>
+                    <span class="glitch" data-text="► ALL SYSTEMS OPERATIONAL">► ALL SYSTEMS OPERATIONAL</span>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
 
                 <div class="info-section">
                     <p>Automated proxy configuration fetcher supporting multiple protocols.</p>
-                    <p>Configurations are fetched from public sources, validated, tested, and served through real-time health-checked endpoints.</p>
+                    <p>Configurations are fetched from public sources, validated, geo-tagged, tested for health, and filtered for security.</p>
                 </div>
 
                 <div class="endpoints-section">
@@ -57,10 +57,9 @@
                         <div class="endpoint-header">
                             <i class="fas fa-file-code"></i>
                             <span class="endpoint-name">RAW CONFIGURATIONS</span>
-                            <span class="endpoint-badge badge-raw">V2RAY/XRAY</span>
                         </div>
                         <div class="endpoint-description">
-                            All extracted proxy configurations in original v2ray/Xray format.
+                            Unfiltered, original proxy configurations as fetched from sources. Use at your own risk.
                             <span class="highlight">Protocols:</span> VMess, VLess, Trojan, SS, Hysteria2
                         </div>
                         <div class="url-container">
@@ -76,11 +75,10 @@
                         <div class="endpoint-header">
                             <i class="fas fa-vial"></i>
                             <span class="endpoint-name">XRAY TESTED</span>
-                            <span class="endpoint-badge badge-tested">VERIFIED</span>
                         </div>
                         <div class="endpoint-description">
-                            Configurations verified and tested using Xray-core engine.
-                            <span class="highlight">Status:</span> Real-time health checked
+                            All configurations that passed the initial (Pass 1) liveness test with the Xray-core engine.
+                            <span class="highlight">Status:</span> Health checked
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt">
@@ -95,11 +93,10 @@
                         <div class="endpoint-header">
                             <i class="fas fa-balance-scale"></i>
                             <span class="endpoint-name">XRAY LOAD BALANCED</span>
-                            <span class="endpoint-badge badge-loadbalance">SMART</span>
                         </div>
                         <div class="endpoint-description">
-                            Unified Xray configuration with intelligent load balancing and automatic failover.
-                            <span class="highlight">Features:</span> Ping-based routing, best server selection, auto-fallback
+                            A unified Xray JSON file containing all *Xray-tested* configs.
+                            <span class="highlight">Features:</span> Ping-based load balancing, auto-fallback
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_loadbalanced_config.json">
@@ -112,12 +109,29 @@
 
                     <div class="endpoint-item">
                         <div class="endpoint-header">
-                            <i class="fas fa-box"></i>
-                            <span class="endpoint-name">SING-BOX ALL</span>
-                            <span class="endpoint-badge badge-singbox">JSON</span>
+                            <i class="fas fa-shield-alt"></i>
+                            <span class="endpoint-name">XRAY SECURE LOAD BALANCED</span>
                         </div>
                         <div class="endpoint-description">
-                            All configurations converted to Sing-box JSON format with geo-tagging.
+                            A unified Xray JSON file containing *only* high-security configs (e.g., valid TLS, modern encryption).
+                            <span class="highlight">Features:</span> Load balanced, ping-based, security-filtered
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_secure_loadbalanced_config.json">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <i class="fas fa-box"></i>
+                            <span class="endpoint-name">SING-BOX ALL</span>
+                        </div>
+                        <div class="endpoint-description">
+                            All *Xray-tested* configs converted to Sing-box format, including geo-location tags.
                             <span class="highlight">Features:</span> Auto-tagged with flags and country names
                         </div>
                         <div class="url-container">
@@ -132,15 +146,32 @@
                     <div class="endpoint-item">
                         <div class="endpoint-header">
                             <i class="fas fa-shield-check"></i>
-                            <span class="endpoint-name">SING-BOX VERIFIED</span>
-                            <span class="endpoint-badge badge-verified">PREMIUM</span>
+                            <span class="endpoint-name">SING-BOX TESTED</span>
                         </div>
                         <div class="endpoint-description">
-                            Premium configurations tested and verified using Sing-box core.
+                            All configurations that passed the *second* (Pass 2) liveness test using the Sing-box core engine.
                             <span class="highlight">Quality:</span> Maximum reliability guaranteed
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_tested.json">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-item">
+                        <div class="endpoint-header">
+                            <i class="fas fa-user-secret"></i>
+                            <span class="endpoint-name">SING-BOX SECURE</span>
+                        </div>
+                        <div class="endpoint-description">
+                            A subset of Sing-box tested configs filtered for high security (e.g., valid TLS, modern encryption).
+                            <span class="highlight">Quality:</span> Ideal for users prioritizing privacy and security
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_secure.json">
                             <button class="copy-btn" onclick="copyToClipboard(this)">
                                 <i class="fas fa-copy"></i>
                                 <span>COPY</span>
