@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi Proxy Config Fetcher</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%230a0e14'/%3E%3Cpath d='M32 12L20 22v20l12 10 12-10V22L32 12zm0 4l8 7v14l-8 7-8-7V23l8-7z' fill='%2300ff41'/%3E%3Cpath d='M32 24v16M24 28l16 8M24 36l16-8' stroke='%2300ff41' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230a0e14'/%3E%3Cpath d='M90 35L55 62v56l35 27 35-27V62L90 35zm0 12l25 21v42l-25 21-25-21V68l25-21z' fill='%2300ff41'/%3E%3Cpath d='M90 68v48M65 80l50 24M65 104l50-24' stroke='%2300ff41' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -47,16 +49,35 @@
                     <p>Configurations are fetched from public sources, validated, geo-tagged, tested for health, and filtered for security.</p>
                 </div>
 
+                <div class="quick-stats">
+                    <div class="quick-stat-item">
+                        <i class="fas fa-network-wired"></i>
+                        <span class="stat-number" data-count="7">0</span>
+                        <span class="stat-text">Endpoints</span>
+                    </div>
+                    <div class="quick-stat-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span class="stat-number" data-count="5">0</span>
+                        <span class="stat-text">Protocols</span>
+                    </div>
+                    <div class="quick-stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span class="stat-number">12H</span>
+                        <span class="stat-text">Update Cycle</span>
+                    </div>
+                </div>
+
                 <div class="endpoints-section">
                     <div class="section-title">
                         <i class="fas fa-network-wired"></i>
                         AVAILABLE ENDPOINTS
                     </div>
                     
-                    <div class="endpoint-item">
+                    <div class="endpoint-item" data-category="raw">
                         <div class="endpoint-header">
                             <i class="fas fa-file-code"></i>
                             <span class="endpoint-name">RAW CONFIGURATIONS</span>
+                            <span class="endpoint-badge">UNFILTERED</span>
                         </div>
                         <div class="endpoint-description">
                             Unfiltered, original proxy configurations as fetched from sources. Use at your own risk.
@@ -64,17 +85,18 @@
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt">
-                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt">
                                 <i class="fas fa-copy"></i>
                                 <span>COPY</span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="endpoint-item">
+                    <div class="endpoint-item" data-category="xray">
                         <div class="endpoint-header">
                             <i class="fas fa-vial"></i>
                             <span class="endpoint-name">XRAY TESTED</span>
+                            <span class="endpoint-badge badge-success">PASS 1</span>
                         </div>
                         <div class="endpoint-description">
                             All configurations that passed the initial (Pass 1) liveness test with the Xray-core engine.
@@ -82,17 +104,18 @@
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt">
-                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt">
                                 <i class="fas fa-copy"></i>
                                 <span>COPY</span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="endpoint-item">
+                    <div class="endpoint-item" data-category="xray">
                         <div class="endpoint-header">
                             <i class="fas fa-balance-scale"></i>
                             <span class="endpoint-name">XRAY LOAD BALANCED</span>
+                            <span class="endpoint-badge badge-info">JSON</span>
                         </div>
                         <div class="endpoint-description">
                             A unified Xray JSON file containing all *Xray-tested* configs.
@@ -100,17 +123,18 @@
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_loadbalanced_config.json">
-                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_loadbalanced_config.json">
                                 <i class="fas fa-copy"></i>
                                 <span>COPY</span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="endpoint-item">
+                    <div class="endpoint-item" data-category="xray">
                         <div class="endpoint-header">
                             <i class="fas fa-shield-alt"></i>
                             <span class="endpoint-name">XRAY SECURE LOAD BALANCED</span>
+                            <span class="endpoint-badge badge-secure">SECURE</span>
                         </div>
                         <div class="endpoint-description">
                             A unified Xray JSON file containing *only* high-security configs (e.g., valid TLS, modern encryption).
@@ -118,17 +142,18 @@
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_secure_loadbalanced_config.json">
-                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_secure_loadbalanced_config.json">
                                 <i class="fas fa-copy"></i>
                                 <span>COPY</span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="endpoint-item">
+                    <div class="endpoint-item" data-category="singbox">
                         <div class="endpoint-header">
                             <i class="fas fa-box"></i>
                             <span class="endpoint-name">SING-BOX ALL</span>
+                            <span class="endpoint-badge badge-info">JSON</span>
                         </div>
                         <div class="endpoint-description">
                             All *Xray-tested* configs converted to Sing-box format, including geo-location tags.
@@ -136,17 +161,18 @@
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_all.json">
-                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_all.json">
                                 <i class="fas fa-copy"></i>
                                 <span>COPY</span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="endpoint-item">
+                    <div class="endpoint-item" data-category="singbox">
                         <div class="endpoint-header">
                             <i class="fas fa-shield-check"></i>
                             <span class="endpoint-name">SING-BOX TESTED</span>
+                            <span class="endpoint-badge badge-success">PASS 2</span>
                         </div>
                         <div class="endpoint-description">
                             All configurations that passed the *second* (Pass 2) liveness test using the Sing-box core engine.
@@ -154,17 +180,18 @@
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_tested.json">
-                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_tested.json">
                                 <i class="fas fa-copy"></i>
                                 <span>COPY</span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="endpoint-item">
+                    <div class="endpoint-item" data-category="singbox">
                         <div class="endpoint-header">
                             <i class="fas fa-user-secret"></i>
                             <span class="endpoint-name">SING-BOX SECURE</span>
+                            <span class="endpoint-badge badge-secure">SECURE</span>
                         </div>
                         <div class="endpoint-description">
                             A subset of Sing-box tested configs filtered for high security (e.g., valid TLS, modern encryption).
@@ -172,11 +199,36 @@
                         </div>
                         <div class="url-container">
                             <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_secure.json">
-                            <button class="copy-btn" onclick="copyToClipboard(this)">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_secure.json">
                                 <i class="fas fa-copy"></i>
                                 <span>COPY</span>
                             </button>
                         </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="section-title">
+                        <i class="fas fa-filter"></i>
+                        FILTER ENDPOINTS
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">
+                            <i class="fas fa-globe"></i>
+                            ALL
+                        </button>
+                        <button class="filter-btn" data-filter="raw">
+                            <i class="fas fa-file-code"></i>
+                            RAW
+                        </button>
+                        <button class="filter-btn" data-filter="xray">
+                            <i class="fas fa-network-wired"></i>
+                            XRAY
+                        </button>
+                        <button class="filter-btn" data-filter="singbox">
+                            <i class="fas fa-box"></i>
+                            SING-BOX
+                        </button>
                     </div>
                 </div>
 
@@ -232,9 +284,12 @@
 
     <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
-        <span>URL copied to clipboard!</span>
+        <span id="toastMessage">URL copied to clipboard!</span>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
