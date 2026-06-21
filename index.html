@@ -52,7 +52,7 @@
                 <div class="quick-stats">
                     <div class="quick-stat-item">
                         <i class="fas fa-network-wired"></i>
-                        <span class="stat-number" data-count="7">0</span>
+                        <span class="stat-number" data-count="10">0</span>
                         <span class="stat-text">Endpoints</span>
                     </div>
                     <div class="quick-stat-item">
@@ -205,6 +205,63 @@
                             </button>
                         </div>
                     </div>
+
+                    <div class="endpoint-item" data-category="clash">
+                        <div class="endpoint-header">
+                            <i class="fas fa-sitemap"></i>
+                            <span class="endpoint-name">CLASH ALL</span>
+                            <span class="endpoint-badge badge-info">YAML</span>
+                        </div>
+                        <div class="endpoint-description">
+                            All Xray-tested configs converted to Clash/Mihomo format with geo-location tags and smart routing.
+                            <span class="highlight">Features:</span> FakeIP DNS, Iran bypass, ad blocking
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_all.yaml">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_all.yaml">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-item" data-category="clash">
+                        <div class="endpoint-header">
+                            <i class="fas fa-certificate"></i>
+                            <span class="endpoint-name">CLASH TESTED</span>
+                            <span class="endpoint-badge badge-success">PASS 2</span>
+                        </div>
+                        <div class="endpoint-description">
+                            Clash/Mihomo config built from configs that passed both Pass 1 and Pass 2 liveness testing.
+                            <span class="highlight">Quality:</span> Maximum reliability guaranteed
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_tested.yaml">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_tested.yaml">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-item" data-category="clash">
+                        <div class="endpoint-header">
+                            <i class="fas fa-lock"></i>
+                            <span class="endpoint-name">CLASH SECURE</span>
+                            <span class="endpoint-badge badge-secure">SECURE</span>
+                        </div>
+                        <div class="endpoint-description">
+                            Clash/Mihomo config built from security-filtered configs (valid TLS, modern encryption only).
+                            <span class="highlight">Quality:</span> Ideal for users prioritizing privacy and security
+                        </div>
+                        <div class="url-container">
+                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_secure.yaml">
+                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_secure.yaml">
+                                <i class="fas fa-copy"></i>
+                                <span>COPY</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="filter-section">
@@ -228,6 +285,10 @@
                         <button class="filter-btn" data-filter="singbox">
                             <i class="fas fa-box"></i>
                             SING-BOX
+                        </button>
+                        <button class="filter-btn" data-filter="clash">
+                            <i class="fas fa-sitemap"></i>
+                            CLASH
                         </button>
                     </div>
                 </div>
