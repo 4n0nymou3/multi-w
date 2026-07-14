@@ -115,7 +115,7 @@ ProxyFetcher.UI = (function() {
         console.log('%c║  [✓] Protocol handlers loaded                                    ║', 'color: #00ff41; font-family: monospace;');
         console.log('%c║  [✓] Real-time monitoring active                                 ║', 'color: #00ff41; font-family: monospace;');
         console.log('%c' + art.middle, 'color: #00ff41; font-family: monospace;');
-        console.log('%c║  Designed by: Anonymous                                          ║', 'color: #00d9ff; font-family: monospace; font-weight: bold;');
+        console.log('%c║  Engineered by: Anonymous                                          ║', 'color: #00d9ff; font-family: monospace; font-weight: bold;');
         console.log('%c║  Repository: github.com/4n0nymou3/multi-proxy-config-fetcher     ║', 'color: #bd00ff; font-family: monospace;');
         console.log('%c' + art.middle, 'color: #00ff41; font-family: monospace;');
         console.log('%c' + art.bottom, 'color: #00ff41; font-family: monospace;');
