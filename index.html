@@ -1,356 +1,212 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi Proxy Config Fetcher</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%230a0e14'/%3E%3Cpath d='M32 12L20 22v20l12 10 12-10V22L32 12zm0 4l8 7v14l-8 7-8-7V23l8-7z' fill='%2300ff41'/%3E%3Cpath d='M32 24v16M24 28l16 8M24 36l16-8' stroke='%2300ff41' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230a0e14'/%3E%3Cpath d='M90 35L55 62v56l35 27 35-27V62L90 35zm0 12l25 21v42l-25 21-25-21V68l25-21z' fill='%2300ff41'/%3E%3Cpath d='M90 68v48M65 80l50 24M65 104l50-24' stroke='%2300ff41' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Anonymous Proxy Hub</title>
+<meta name="description" content="Live subscription endpoints for the Multi Proxy Config Fetcher project — VMess, VLess, Trojan, SS and Hysteria2 configs, tested, geo-tagged and security-filtered."/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%230d1117'/%3E%3Cpath d='M32 12L20 22v20l12 10 12-10V22L32 12zm0 4l8 7v14l-8 7-8-7V23l8-7z' fill='%234493f8'/%3E%3Cpath d='M32 24v16M24 28l16 8M24 36l16-8' stroke='%234493f8' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230d1117'/%3E%3Cpath d='M90 35L55 62v56l35 27 35-27V62L90 35zm0 12l25 21v42l-25 21-25-21V68l25-21z' fill='%234493f8'/%3E%3Cpath d='M90 68v48M65 80l50 24M65 104l50-24' stroke='%234493f8' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
-    <div class="scanlines"></div>
-    <div class="crt-effect"></div>
-    
-    <div class="container">
-        <div class="terminal-header">
-            <div class="header-title">
-                <i class="fas fa-terminal"></i>
-                MULTI PROXY CONFIG FETCHER
-            </div>
-            <div class="header-status">
-                <span class="status-indicator"></span>
-                <span class="status-text">ONLINE</span>
-            </div>
-        </div>
-
-        <div class="terminal-body">
-            <div class="boot-sequence" id="bootSequence">
-                <div class="boot-line">[<span class="boot-ok">OK</span>] Starting Multi Proxy Config Fetcher...</div>
-                <div class="boot-line">[<span class="boot-ok">OK</span>] Loading protocol handlers: VMess, VLess, Trojan, SS, Hysteria2</div>
-                <div class="boot-line">[<span class="boot-ok">OK</span>] Initializing Xray-core testing engine (Pass 1)...</div>
-                <div class="boot-line">[<span class="boot-ok">OK</span>] Initializing Sing-box testing engine (Pass 2)...</div>
-                <div class="boot-line">[<span class="boot-ok">OK</span>] Geo-location services: ACTIVE</div>
-                <div class="boot-line">[<span class="boot-ok">OK</span>] Security filter engaged: Analyzing protocols...</div>
-                <div class="boot-line boot-ready">
-                    <span class="glitch" data-text="► ALL SYSTEMS OPERATIONAL">► ALL SYSTEMS OPERATIONAL</span>
-                </div>
-            </div>
-
-            <div class="main-content" id="mainContent">
-                <div class="logo-section">
-                    <span class="logo-text">Anonymous</span>
-                    <span class="cursor-blink">▮</span>
-                </div>
-
-                <div class="info-section">
-                    <p>Automated proxy configuration fetcher supporting multiple protocols.</p>
-                    <p>Configurations are fetched from public sources, validated, geo-tagged, tested for health, and filtered for security.</p>
-                </div>
-
-                <div class="quick-stats">
-                    <div class="quick-stat-item">
-                        <i class="fas fa-network-wired"></i>
-                        <span class="stat-number" data-count="10">0</span>
-                        <span class="stat-text">Endpoints</span>
-                    </div>
-                    <div class="quick-stat-item">
-                        <i class="fas fa-layer-group"></i>
-                        <span class="stat-number" data-count="5">0</span>
-                        <span class="stat-text">Protocols</span>
-                    </div>
-                    <div class="quick-stat-item">
-                        <i class="fas fa-clock"></i>
-                        <span class="stat-number">12H</span>
-                        <span class="stat-text">Update Cycle</span>
-                    </div>
-                </div>
-
-                <div class="endpoints-section">
-                    <div class="section-title">
-                        <i class="fas fa-network-wired"></i>
-                        AVAILABLE ENDPOINTS
-                    </div>
-                    
-                    <div class="endpoint-item" data-category="raw">
-                        <div class="endpoint-header">
-                            <i class="fas fa-file-code"></i>
-                            <span class="endpoint-name">RAW CONFIGURATIONS</span>
-                            <span class="endpoint-badge">UNFILTERED</span>
-                        </div>
-                        <div class="endpoint-description">
-                            Unfiltered, original proxy configurations as fetched from sources. Use at your own risk.
-                            <span class="highlight">Protocols:</span> VMess, VLess, Trojan, SS, Hysteria2
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="endpoint-item" data-category="xray">
-                        <div class="endpoint-header">
-                            <i class="fas fa-vial"></i>
-                            <span class="endpoint-name">XRAY TESTED</span>
-                            <span class="endpoint-badge badge-success">PASS 1</span>
-                        </div>
-                        <div class="endpoint-description">
-                            All configurations that passed the initial (Pass 1) liveness test with the Xray-core engine.
-                            <span class="highlight">Status:</span> Health checked
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="endpoint-item" data-category="xray">
-                        <div class="endpoint-header">
-                            <i class="fas fa-balance-scale"></i>
-                            <span class="endpoint-name">XRAY LOAD BALANCED</span>
-                            <span class="endpoint-badge badge-info">JSON</span>
-                        </div>
-                        <div class="endpoint-description">
-                            A unified Xray JSON file containing all *Xray-tested* configs.
-                            <span class="highlight">Features:</span> Ping-based load balancing, auto-fallback
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_loadbalanced_config.json">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_loadbalanced_config.json">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="endpoint-item" data-category="xray">
-                        <div class="endpoint-header">
-                            <i class="fas fa-shield-alt"></i>
-                            <span class="endpoint-name">XRAY SECURE LOAD BALANCED</span>
-                            <span class="endpoint-badge badge-secure">SECURE</span>
-                        </div>
-                        <div class="endpoint-description">
-                            A unified Xray JSON file containing *only* high-security configs (e.g., valid TLS, modern encryption).
-                            <span class="highlight">Features:</span> Load balanced, ping-based, security-filtered
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_secure_loadbalanced_config.json">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_secure_loadbalanced_config.json">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="endpoint-item" data-category="singbox">
-                        <div class="endpoint-header">
-                            <i class="fas fa-box"></i>
-                            <span class="endpoint-name">SING-BOX ALL</span>
-                            <span class="endpoint-badge badge-info">JSON</span>
-                        </div>
-                        <div class="endpoint-description">
-                            All *Xray-tested* configs converted to Sing-box format, including geo-location tags.
-                            <span class="highlight">Features:</span> Auto-tagged with flags and country names
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_all.json">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_all.json">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="endpoint-item" data-category="singbox">
-                        <div class="endpoint-header">
-                            <i class="fas fa-check-double"></i>
-                            <span class="endpoint-name">SING-BOX TESTED</span>
-                            <span class="endpoint-badge badge-success">PASS 2</span>
-                        </div>
-                        <div class="endpoint-description">
-                            All configurations that passed the *second* (Pass 2) liveness test using the Sing-box core engine.
-                            <span class="highlight">Quality:</span> Maximum reliability guaranteed
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_tested.json">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_tested.json">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="endpoint-item" data-category="singbox">
-                        <div class="endpoint-header">
-                            <i class="fas fa-user-secret"></i>
-                            <span class="endpoint-name">SING-BOX SECURE</span>
-                            <span class="endpoint-badge badge-secure">SECURE</span>
-                        </div>
-                        <div class="endpoint-description">
-                            A subset of Sing-box tested configs filtered for high security (e.g., valid TLS, modern encryption).
-                            <span class="highlight">Quality:</span> Ideal for users prioritizing privacy and security
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_secure.json">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_secure.json">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="endpoint-item" data-category="clash">
-                        <div class="endpoint-header">
-                            <i class="fas fa-sitemap"></i>
-                            <span class="endpoint-name">CLASH ALL</span>
-                            <span class="endpoint-badge badge-info">YAML</span>
-                        </div>
-                        <div class="endpoint-description">
-                            All Xray-tested configs converted to Clash/Mihomo format with geo-location tags and smart routing.
-                            <span class="highlight">Features:</span> FakeIP DNS, Iran bypass, ad blocking
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_all.yaml">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_all.yaml">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="endpoint-item" data-category="clash">
-                        <div class="endpoint-header">
-                            <i class="fas fa-certificate"></i>
-                            <span class="endpoint-name">CLASH TESTED</span>
-                            <span class="endpoint-badge badge-success">PASS 2</span>
-                        </div>
-                        <div class="endpoint-description">
-                            Clash/Mihomo config built from configs that passed both Pass 1 and Pass 2 liveness testing.
-                            <span class="highlight">Quality:</span> Maximum reliability guaranteed
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_tested.yaml">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_tested.yaml">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="endpoint-item" data-category="clash">
-                        <div class="endpoint-header">
-                            <i class="fas fa-lock"></i>
-                            <span class="endpoint-name">CLASH SECURE</span>
-                            <span class="endpoint-badge badge-secure">SECURE</span>
-                        </div>
-                        <div class="endpoint-description">
-                            Clash/Mihomo config built from security-filtered configs (valid TLS, modern encryption only).
-                            <span class="highlight">Quality:</span> Ideal for users prioritizing privacy and security
-                        </div>
-                        <div class="url-container">
-                            <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_secure.yaml">
-                            <button class="copy-btn" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_secure.yaml">
-                                <i class="fas fa-copy"></i>
-                                <span>COPY</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-section">
-                    <div class="section-title">
-                        <i class="fas fa-filter"></i>
-                        FILTER ENDPOINTS
-                    </div>
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">
-                            <i class="fas fa-globe"></i>
-                            ALL
-                        </button>
-                        <button class="filter-btn" data-filter="raw">
-                            <i class="fas fa-file-code"></i>
-                            RAW
-                        </button>
-                        <button class="filter-btn" data-filter="xray">
-                            <i class="fas fa-network-wired"></i>
-                            XRAY
-                        </button>
-                        <button class="filter-btn" data-filter="singbox">
-                            <i class="fas fa-box"></i>
-                            SING-BOX
-                        </button>
-                        <button class="filter-btn" data-filter="clash">
-                            <i class="fas fa-sitemap"></i>
-                            CLASH
-                        </button>
-                    </div>
-                </div>
-
-                <div class="stats-section">
-                    <div class="section-title">
-                        <i class="fas fa-chart-line"></i>
-                        SYSTEM STATUS
-                    </div>
-                    <div class="status-grid">
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-server"></i></div>
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">PROTOCOLS</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-sync-alt"></i></div>
-                            <div class="stat-value">12H</div>
-                            <div class="stat-label">UPDATE CYCLE</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="stat-value">AUTO</div>
-                            <div class="stat-label">HEALTH CHECK</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-globe"></i></div>
-                            <div class="stat-value">GEO</div>
-                            <div class="stat-label">TAGGING</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <p class="designer-credit">
-                        Engineered by: <a href="https://github.com/4n0nymou3/multi-proxy-config-fetcher" target="_blank" class="anonymous-link">Anonymous</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="terminal-footer">
-            <div class="footer-left">
-                <i class="fas fa-lock"></i> ENCRYPTED CONNECTION
-            </div>
-            <div class="footer-center">
-                <span id="currentTime"></span>
-            </div>
-            <div class="footer-right">
-                <span id="typing"></span>
-            </div>
-        </div>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="hdr">
+      <div class="hdr-top"><div class="hdr-dot"></div><h1>Anonymous Proxy Hub</h1></div>
+      <p class="hdr-sub">Live subscription endpoints for the Multi Proxy Config Fetcher project.</p>
+      <div class="badges">
+        <span class="badge"><span class="badge-label">status</span><span class="badge-value bv-green">live</span></span>
+        <span class="badge"><span class="badge-label">endpoints</span><span class="badge-value bv-blue">10</span></span>
+        <span class="badge"><span class="badge-label">license</span><span class="badge-value bv-purple">MIT</span></span>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">URL copied to clipboard!</span>
+<div class="wrap">
+
+  <div class="alert ab">
+    <span class="aico">ℹ</span>
+    <div>Automated proxy configuration fetcher supporting multiple protocols. Configs are fetched from public sources, validated, geo-tagged, tested for health across two passes, and filtered for security every 12 hours.</div>
+  </div>
+
+  <div class="filter-row" id="filterRow">
+    <button class="filter-btn active" data-filter="all" type="button">All</button>
+    <button class="filter-btn" data-filter="raw" type="button">Raw</button>
+    <button class="filter-btn" data-filter="xray" type="button">Xray</button>
+    <button class="filter-btn" data-filter="singbox" type="button">Sing-box</button>
+    <button class="filter-btn" data-filter="clash" type="button">Clash</button>
+  </div>
+
+  <div class="sec" data-category="raw">
+    <div class="sec-hdr">
+      <div class="sec-title"><svg class="sec-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 1.5h5.5L12.5 4.5V13a1 1 0 0 1-1 1h-7a1 1 0 0 1-1-1V2.5a1 1 0 0 1 1-1z"/><path d="M9.5 1.5V4.5h3"/></svg><span>Raw Configurations</span></div>
     </div>
+    <div class="sec-body">
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg ctg-muted">Unfiltered</span>
+          <span class="ep-name">Raw Configurations</span>
+        </div>
+        <p class="ep-desc">Unfiltered, original proxy configurations as fetched from sources. Use at your own risk. <span class="highlight">Protocols:</span> VMess, VLess, Trojan, SS, Hysteria2</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt">⎘ Copy</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script src="js/config.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/main.js"></script>
+  <div class="sec" data-category="xray">
+    <div class="sec-hdr">
+      <div class="sec-title"><svg class="sec-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2.5" width="12" height="4" rx="1"/><rect x="2" y="9.5" width="12" height="4" rx="1"/><circle cx="4.3" cy="4.5" r=".5" fill="currentColor" stroke="none"/><circle cx="4.3" cy="11.5" r=".5" fill="currentColor" stroke="none"/></svg><span>Xray Configs</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg ctg-green">Pass 1</span>
+          <span class="ep-name">Xray Tested</span>
+        </div>
+        <p class="ep-desc">All configurations that passed the initial (Pass 1) liveness test with the Xray-core engine. <span class="highlight">Status:</span> Health checked</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs_tested.txt">⎘ Copy</button></div>
+        </div>
+      </div>
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg">JSON</span>
+          <span class="ep-name">Xray Load Balanced</span>
+        </div>
+        <p class="ep-desc">A unified Xray JSON file containing all Xray-tested configs. <span class="highlight">Features:</span> Ping-based load balancing, auto-fallback</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_loadbalanced_config.json">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_loadbalanced_config.json">⎘ Copy</button></div>
+        </div>
+      </div>
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg ctg-orange">Secure</span>
+          <span class="ep-name">Xray Secure Load Balanced</span>
+        </div>
+        <p class="ep-desc">A unified Xray JSON file containing only high-security configs (e.g., valid TLS, modern encryption). <span class="highlight">Features:</span> Load balanced, ping-based, security-filtered</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_secure_loadbalanced_config.json">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/xray_secure_loadbalanced_config.json">⎘ Copy</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" data-category="singbox">
+    <div class="sec-hdr">
+      <div class="sec-title"><svg class="sec-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5l5.5 3v7L8 14.5 2.5 11.5v-7L8 1.5z"/><path d="M2.5 4.5L8 7.5l5.5-3M8 7.5V14.5"/></svg><span>Sing-box Configs</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg">JSON</span>
+          <span class="ep-name">Sing-box All</span>
+        </div>
+        <p class="ep-desc">All Xray-tested configs converted to Sing-box format, including geo-location tags. <span class="highlight">Features:</span> Auto-tagged with flags and country names</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_all.json">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_all.json">⎘ Copy</button></div>
+        </div>
+      </div>
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg ctg-green">Pass 2</span>
+          <span class="ep-name">Sing-box Tested</span>
+        </div>
+        <p class="ep-desc">All configurations that passed the second (Pass 2) liveness test using the Sing-box core engine. <span class="highlight">Quality:</span> Maximum reliability guaranteed</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_tested.json">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_tested.json">⎘ Copy</button></div>
+        </div>
+      </div>
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg ctg-orange">Secure</span>
+          <span class="ep-name">Sing-box Secure</span>
+        </div>
+        <p class="ep-desc">A subset of Sing-box tested configs filtered for high security (e.g., valid TLS, modern encryption). <span class="highlight">Quality:</span> Ideal for users prioritizing privacy and security</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_secure.json">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/singbox_configs_secure.json">⎘ Copy</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" data-category="clash">
+    <div class="sec-hdr">
+      <div class="sec-title"><svg class="sec-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="3" r="1.4"/><circle cx="3.3" cy="12.5" r="1.4"/><circle cx="12.7" cy="12.5" r="1.4"/><path d="M8 4.4V7M8 7L3.6 11.2M8 7l4.4 4.2"/></svg><span>Clash Configs</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg ctg-purple">YAML</span>
+          <span class="ep-name">Clash All</span>
+        </div>
+        <p class="ep-desc">All Xray-tested configs converted to Clash/Mihomo format with geo-location tags and smart routing. <span class="highlight">Features:</span> FakeIP DNS, Iran bypass, ad blocking</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_all.yaml">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_all.yaml">⎘ Copy</button></div>
+        </div>
+      </div>
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg ctg-green">Pass 2</span>
+          <span class="ep-name">Clash Tested</span>
+        </div>
+        <p class="ep-desc">Clash/Mihomo config built from configs that passed both Pass 1 and Pass 2 liveness testing. <span class="highlight">Quality:</span> Maximum reliability guaranteed</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_tested.yaml">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_tested.yaml">⎘ Copy</button></div>
+        </div>
+      </div>
+      <div class="ep-item">
+        <div class="ep-head">
+          <span class="ctg ctg-orange">Secure</span>
+          <span class="ep-name">Clash Secure</span>
+        </div>
+        <p class="ep-desc">Clash/Mihomo config built from security-filtered configs (valid TLS, modern encryption only). <span class="highlight">Quality:</span> Ideal for users prioritizing privacy and security</p>
+        <div class="urow">
+          <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_secure.yaml">
+          <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/clash_configs_secure.yaml">⎘ Copy</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-hdr">
+      <div class="sec-title"><svg class="sec-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 13.5V8.5M6.3 13.5V4.5M10.1 13.5V7M13.5 13.5V2.5"/></svg><span>System Status</span></div>
+    </div>
+    <div class="sec-body">
+      <div class="stats">
+        <div class="stat"><span class="sn">5</span><div class="sl">Protocols</div></div>
+        <div class="stat"><span class="sn">10</span><div class="sl">Endpoints</div></div>
+        <div class="stat"><span class="sn">12H</span><div class="sl">Update Cycle</div></div>
+        <div class="stat"><span class="sn">Auto</span><div class="sl">Health Check</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Engineered by: <a href="https://github.com/4n0nymou3/multi-proxy-config-fetcher" target="_blank" class="footer-link">Anonymous</a></p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
