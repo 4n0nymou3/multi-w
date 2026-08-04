@@ -2,99 +2,44 @@ var ProxyFetcher = ProxyFetcher || {};
 
 ProxyFetcher.UI = (function() {
     var Config = ProxyFetcher.Config;
-    var Utils = ProxyFetcher.Utils;
+    var toastHideTimer = null;
+    var toastResetTimer = null;
 
-    function showBootSequence(callback) {
-        setTimeout(function() {
-            document.getElementById('bootSequence').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-            if (callback) callback();
-        }, Config.bootSequenceDuration);
-    }
-
-    function showToast(message, type) {
-        var toast = document.getElementById('toast');
-        var toastMessage = document.getElementById('toastMessage');
-        var icon = toast.querySelector('i');
-        
-        toastMessage.textContent = message;
-        
-        icon.className = 'fas';
-        toast.className = 'toast';
-        
-        if (type === 'success') {
-            icon.className += ' fa-check-circle';
-            toast.className += ' toast-success';
-        } else if (type === 'error') {
-            icon.className += ' fa-exclamation-circle';
-            toast.className += ' toast-error';
-        } else {
-            icon.className += ' fa-info-circle';
-            toast.className += ' toast-info';
-        }
-        
-        toast.classList.add('show');
-        
-        setTimeout(function() {
-            toast.classList.remove('show');
+    function toast(msg) {
+        var el = document.getElementById('toast');
+        if (!el) return;
+        clearTimeout(toastHideTimer);
+        clearTimeout(toastResetTimer);
+        el.classList.remove('show');
+        el.classList.remove('is-visible');
+        void el.offsetWidth;
+        el.textContent = msg;
+        el.classList.add('is-visible');
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+                el.classList.add('show');
+            });
+        });
+        toastHideTimer = setTimeout(function() {
+            el.classList.remove('show');
+            toastResetTimer = setTimeout(function() {
+                el.classList.remove('is-visible');
+            }, 400);
         }, Config.toastDuration);
     }
 
-    function updateClock() {
-        var timeElement = document.getElementById('currentTime');
-        if (timeElement) {
-            timeElement.textContent = Utils.formatTime(new Date());
-        }
-    }
-
-    function startTypingAnimation() {
-        var typingElement = document.getElementById('typing');
-        if (!typingElement) return;
-        
-        var currentIndex = 0;
-        
-        setInterval(function() {
-            typingElement.textContent = Config.typingTexts[currentIndex];
-            currentIndex = (currentIndex + 1) % Config.typingTexts.length;
-        }, Config.typingAnimationInterval);
-    }
-
-    function animateCounters() {
-        var counters = document.querySelectorAll('.stat-number[data-count]');
-        counters.forEach(function(counter) {
-            var target = parseInt(counter.getAttribute('data-count'));
-            Utils.animateCounter(counter, target, Config.counterAnimationDuration);
-        });
-    }
-
-    function initIntersectionObserver() {
-        if (!window.IntersectionObserver) return;
-        
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInContent 0.6s ease-out';
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        document.querySelectorAll('.endpoint-item').forEach(function(item) {
-            observer.observe(item);
-        });
-    }
-
-    function initStatBoxHover() {
-        document.querySelectorAll('.stat-box').forEach(function(box) {
-            box.addEventListener('mouseenter', function() {
-                this.style.borderColor = 'var(--accent-blue)';
-            });
-            
-            box.addEventListener('mouseleave', function() {
-                this.style.borderColor = 'var(--border-color)';
-            });
-        });
+    function flashCopied(btn) {
+        if (!btn) return;
+        if (btn.dataset.flashing === '1') return;
+        var original = btn.innerHTML;
+        btn.dataset.flashing = '1';
+        btn.innerHTML = '<svg class="chk-ico" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>';
+        btn.classList.add('copied-pop', 'is-copied');
+        setTimeout(function() {
+            btn.innerHTML = original;
+            btn.classList.remove('copied-pop', 'is-copied');
+            btn.dataset.flashing = '0';
+        }, 1500);
     }
 
     function initInputSelection() {
@@ -105,31 +50,33 @@ ProxyFetcher.UI = (function() {
         });
     }
 
-    function printConsoleArt() {
-        var art = Config.consoleArt;
-        console.log('%c' + art.top, 'color: #00ff41; font-family: monospace;');
-        console.log('%c' + art.middle, 'color: #00ff41; font-family: monospace;');
-        console.log('%c' + art.title, 'color: #00ff41; font-family: monospace; font-weight: bold;');
-        console.log('%c' + art.middle, 'color: #00ff41; font-family: monospace;');
-        console.log('%c║  [✓] System initialized                                          ║', 'color: #00ff41; font-family: monospace;');
-        console.log('%c║  [✓] Protocol handlers loaded                                    ║', 'color: #00ff41; font-family: monospace;');
-        console.log('%c║  [✓] Real-time monitoring active                                 ║', 'color: #00ff41; font-family: monospace;');
-        console.log('%c' + art.middle, 'color: #00ff41; font-family: monospace;');
-        console.log('%c║  Engineered by: Anonymous                                          ║', 'color: #00d9ff; font-family: monospace; font-weight: bold;');
-        console.log('%c║  Repository: github.com/4n0nymou3/multi-proxy-config-fetcher     ║', 'color: #bd00ff; font-family: monospace;');
-        console.log('%c' + art.middle, 'color: #00ff41; font-family: monospace;');
-        console.log('%c' + art.bottom, 'color: #00ff41; font-family: monospace;');
+    function initFilter() {
+        var filterButtons = document.querySelectorAll('.filter-btn');
+        var sections = document.querySelectorAll('.sec[data-category]');
+
+        filterButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                var filter = this.getAttribute('data-filter');
+                sections.forEach(function(section) {
+                    if (filter === 'all' || section.getAttribute('data-category') === filter) {
+                        section.style.display = '';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
     }
 
     return {
-        showBootSequence: showBootSequence,
-        showToast: showToast,
-        updateClock: updateClock,
-        startTypingAnimation: startTypingAnimation,
-        animateCounters: animateCounters,
-        initIntersectionObserver: initIntersectionObserver,
-        initStatBoxHover: initStatBoxHover,
+        toast: toast,
+        flashCopied: flashCopied,
         initInputSelection: initInputSelection,
-        printConsoleArt: printConsoleArt
+        initFilter: initFilter
     };
 })();
