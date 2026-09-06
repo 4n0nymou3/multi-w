@@ -4,6 +4,7 @@ ProxyFetcher.UI = (function() {
     var Config = ProxyFetcher.Config;
     var toastHideTimer = null;
     var toastResetTimer = null;
+    var activeChip = null;
 
     function toast(msg) {
         var el = document.getElementById('toast');
@@ -73,10 +74,66 @@ ProxyFetcher.UI = (function() {
         });
     }
 
+    function buildLocationUrl(code) {
+        return Config.locationBaseUrl + code + '/proxy_configs.txt';
+    }
+
+    function selectCountry(country, chip) {
+        var placeholder = document.getElementById('locPlaceholder');
+        var result = document.getElementById('locResult');
+        var flagEl = document.getElementById('locResultFlag');
+        var nameEl = document.getElementById('locResultName');
+        var codeEl = document.getElementById('locResultCode');
+        var input = document.getElementById('locUrlInput');
+        var copyBtn = document.getElementById('locCopyBtn');
+
+        if (!result || !input) return;
+
+        if (activeChip) {
+            activeChip.classList.remove('active');
+        }
+        chip.classList.add('active');
+        activeChip = chip;
+
+        var url = buildLocationUrl(country.code);
+
+        flagEl.textContent = country.flag;
+        nameEl.textContent = country.name;
+        codeEl.textContent = country.code;
+        input.value = url;
+        copyBtn.setAttribute('data-url', url);
+
+        if (placeholder) placeholder.style.display = 'none';
+        result.classList.add('is-visible');
+    }
+
+    function initLocationPicker() {
+        var grid = document.getElementById('flagGrid');
+        if (!grid || !Config.countries) return;
+
+        Config.countries.forEach(function(country) {
+            var chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'flag-chip';
+            chip.setAttribute('data-code', country.code);
+            chip.setAttribute('aria-label', country.name);
+            chip.innerHTML =
+                '<span class="fc-emoji">' + country.flag + '</span>' +
+                '<span class="fc-code">' + country.code + '</span>';
+
+            chip.addEventListener('click', function() {
+                selectCountry(country, chip);
+            });
+
+            grid.appendChild(chip);
+        });
+    }
+
     return {
         toast: toast,
         flashCopied: flashCopied,
         initInputSelection: initInputSelection,
-        initFilter: initFilter
+        initFilter: initFilter,
+        initLocationPicker: initLocationPicker
     };
 })();
