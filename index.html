@@ -18,7 +18,7 @@
       <p class="hdr-sub">Live subscription endpoints for the Multi Proxy Config Fetcher project.</p>
       <div class="badges">
         <span class="badge"><span class="badge-label">status</span><span class="badge-value bv-green">live</span></span>
-        <span class="badge"><span class="badge-label">endpoints</span><span class="badge-value bv-blue">11</span></span>
+        <span class="badge"><span class="badge-label">endpoints</span><span class="badge-value bv-blue">36</span></span>
         <span class="badge"><span class="badge-label">license</span><span class="badge-value bv-purple">MIT</span></span>
       </div>
     </div>
@@ -35,6 +35,7 @@
   <div class="filter-row" id="filterRow">
     <button class="filter-btn active" data-filter="all" type="button">All</button>
     <button class="filter-btn" data-filter="raw" type="button">Raw</button>
+    <button class="filter-btn" data-filter="location" type="button">By Country</button>
     <button class="filter-btn" data-filter="xray" type="button">Xray</button>
     <button class="filter-btn" data-filter="singbox" type="button">Sing-box</button>
     <button class="filter-btn" data-filter="clash" type="button">Clash</button>
@@ -54,6 +55,28 @@
         <div class="urow">
           <input type="text" class="url-input" readonly value="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt">
           <div class="ubtns"><button class="bsm ep-copy" type="button" data-url="https://raw.githubusercontent.com/4n0nymou3/multi-proxy-config-fetcher/refs/heads/main/configs/proxy_configs.txt">⎘ Copy</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" data-category="location">
+    <div class="sec-hdr">
+      <div class="sec-title"><svg class="sec-icon" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14.5s5-4.2 5-8.5A5 5 0 0 0 3 6c0 4.3 5 8.5 5 8.5z"/><circle cx="8" cy="6" r="1.8"/></svg><span>By Country</span></div>
+    </div>
+    <div class="sec-body">
+      <p class="ep-desc" style="margin-bottom:12px">Xray-tested configurations grouped by server country. Tap a flag to get that country's subscription link. <span class="highlight">Protocols:</span> VMess, VLess, Trojan, SS, Hysteria2</p>
+      <div class="flag-grid" id="flagGrid"></div>
+      <p class="loc-placeholder" id="locPlaceholder">Tap a flag above to reveal its subscription link</p>
+      <div class="loc-result" id="locResult">
+        <div class="loc-result-head">
+          <span class="loc-result-flag" id="locResultFlag"></span>
+          <span class="loc-result-name" id="locResultName"></span>
+          <span class="loc-result-code" id="locResultCode"></span>
+        </div>
+        <div class="urow">
+          <input type="text" class="url-input" id="locUrlInput" readonly value="">
+          <div class="ubtns"><button class="bsm ep-copy" id="locCopyBtn" type="button" data-url="">⎘ Copy</button></div>
         </div>
       </div>
     </div>
@@ -200,7 +223,7 @@
     <div class="sec-body">
       <div class="stats">
         <div class="stat"><span class="sn">5</span><div class="sl">Protocols</div></div>
-        <div class="stat"><span class="sn">11</span><div class="sl">Endpoints</div></div>
+        <div class="stat"><span class="sn">36</span><div class="sl">Endpoints</div></div>
         <div class="stat"><span class="sn">3H</span><div class="sl">Update Cycle</div></div>
         <div class="stat"><span class="sn">Auto</span><div class="sl">Health Check</div></div>
       </div>
