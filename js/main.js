@@ -4,11 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     UI.initInputSelection();
     UI.initFilter();
+    UI.initLocationPicker();
 
     document.querySelectorAll('.ep-copy').forEach(function(button) {
         button.addEventListener('click', function() {
             var btn = this;
             var url = btn.getAttribute('data-url');
+
+            if (!url) return;
 
             Utils.copyToClipboard(url, function(success) {
                 if (success) {
